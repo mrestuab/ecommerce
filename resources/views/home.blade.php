@@ -15,6 +15,7 @@
         </a>
         <div class="flex items-center space-x-6 rtl:space-x-reverse">
             <a href="tel:5541251234" class="text-sm  text-gray-500 dark:text-white hover:underline">(555) 412-1234</a>
+            <a href="<?php echo url('register') ?>" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Register</a>
             <a href="<?php echo url('login') ?>" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Login</a>
         </div>
     </div>
