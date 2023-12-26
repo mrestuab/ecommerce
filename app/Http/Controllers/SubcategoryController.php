@@ -83,7 +83,9 @@ class SubcategoryController extends Controller
      */
     public function show(Subcategory $subcategory)
     {
-        //
+        return response()->json([
+            'data' => $subcategory
+        ]);
     }
 
     /**
@@ -127,7 +129,7 @@ class SubcategoryController extends Controller
             $gambar->move('uploads', $nama_gambar);
             $input['gambar'] = $nama_gambar;
         } else {
-            unsert($input['gambar']);
+            unset($input['gambar']);
         }
 
         

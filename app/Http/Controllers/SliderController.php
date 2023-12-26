@@ -82,7 +82,9 @@ class SliderController extends Controller
      */
     public function show(Slider $slider)
     {
-        //
+        return response()->json([
+            'data' => $slider
+        ]);
     }
 
     /**
@@ -126,7 +128,7 @@ class SliderController extends Controller
             $gambar->move('uploads', $nama_gambar);
             $input['gambar'] = $nama_gambar;
         } else {
-            unsert($input['gambar']);
+            unset($input['gambar']);
         }
 
         

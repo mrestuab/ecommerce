@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -82,7 +83,9 @@ class TestimoniController extends Controller
      */
     public function show(Testimoni $testimoni)
     {
-        //
+        return response()->json([
+            'data' => $testimoni
+        ]);
     }
 
     /**
@@ -126,7 +129,7 @@ class TestimoniController extends Controller
             $gambar->move('uploads', $nama_gambar);
             $input['gambar'] = $nama_gambar;
         } else {
-            unsert($input['gambar']);
+            unset($input['gambar']);
         }
 
         

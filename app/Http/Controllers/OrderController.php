@@ -63,7 +63,7 @@ class OrderController extends Controller
 
         for($i = 0; $i < count($input['id_produk']); $i++) {
             OrderDetail::create([
-                'id_order' => $Order['id'],
+                'id_order' => $order['id'],
                 'id_produk' => $input['id_produk']['$i'],
                 'jumlah' => $input['jumlah']['$i'],
                 'color' => $input['color']['$i'],
@@ -84,7 +84,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return response()->json([
+            'data' => $order
+        ]);
     }
 
     /**
@@ -127,7 +129,7 @@ class OrderController extends Controller
 
         for($i = 0; $i < count($input['id_produk']); $i++) {
             OrderDetail::create([
-                'id_order' => $Order['id'],
+                'id_order' => $order['id'],
                 'id_produk' => $input['id_produk']['$i'],
                 'jumlah' => $input['jumlah']['$i'],
                 'color' => $input['color']['$i'],

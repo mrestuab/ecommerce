@@ -89,7 +89,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return response()->json([
+            'data' => $product
+        ]);
     }
 
     /**
@@ -141,7 +143,7 @@ class ProductController extends Controller
             $gambar->move('uploads', $nama_gambar);
             $input['gambar'] = $nama_gambar;
         } else {
-            unsert($input['gambar']);
+            unset($input['gambar']);
         }
 
         
@@ -159,7 +161,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produck $product)
+    public function destroy(Product $product)
     {
         file::delete('uploads/' . $product->gambar);
         

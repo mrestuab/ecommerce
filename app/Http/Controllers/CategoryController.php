@@ -82,7 +82,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return response()->json([
+            'data' => $category
+        ]);
     }
 
     /**
@@ -126,7 +128,7 @@ class CategoryController extends Controller
             $gambar->move('uploads', $nama_gambar);
             $input['gambar'] = $nama_gambar;
         } else {
-            unsert($input['gambar']);
+            unset($input['gambar']);
         }
 
         
