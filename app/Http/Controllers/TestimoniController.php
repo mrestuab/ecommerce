@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subcategory;
+use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-class SubcategoryController extends Controller
+class TestimoniController extends Controller
 {
     public function __construct()
     {
@@ -20,10 +20,10 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Subcategory::all();
+        $testimonis = Testimoni::all();
 
         return response()->json([
-            'data' => $subcategories
+            'data' => $testimonis
         ]);
     }
 
@@ -46,8 +46,7 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         $validator = validator::make($request->all(), [
-            'id_kategori' => 'required',
-            'nama_subkategori' => 'required',
+            'nama_testimoni' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'required|image|mines:jpg,png,jpeg,webp'
         ]);
@@ -68,20 +67,20 @@ class SubcategoryController extends Controller
             $input['gambar'] = $nama_gambar;
         }
 
-        $subcategory = Subcategory::create($input);
+        $testimoni = Category::create($input);
 
         return response()->json([
-            'data' => $subcategory
+            'data' => $testimoni
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Testimoni  $testimoni
      * @return \Illuminate\Http\Response
      */
-    public function show(Subcategory $subcategory)
+    public function show(Testimoni $testimoni)
     {
         //
     }
@@ -89,10 +88,10 @@ class SubcategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Testimoni  $testimoni
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcategory $subcategory)
+    public function edit(Testimoni $testimoni)
     {
         //
     }
@@ -101,13 +100,13 @@ class SubcategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Testimoni  $testimoni
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcategory $subcategory)
+    public function update(Request $request, Testimoni $testimoni)
     {
         $validator = validator::make($request->all(), [
-            'nama_kategori' => 'required',
+            'nama_testimoni' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -121,7 +120,7 @@ class SubcategoryController extends Controller
         $input = $request->all();
 
         if ($request->has('gambar')) {
-            file::delete('uploads/' . $subcategory->gambar);
+            file::delete('uploads/' . $testimoni->gambar);
             $gambar = $request->file('gambar');
             $nama_gambar = time() . rand(1, 9) .'.'. $gambar->getClientOriginalExtension();
             $gambar->move('uploads', $nama_gambar);
@@ -131,25 +130,25 @@ class SubcategoryController extends Controller
         }
 
         
-        $subcategory->update($input);
+        $testimoni->update($input);
 
         return response()->json([
             'message' => 'succes',
-            'data' => $subcategory
+            'data' => $testimoni
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Testimoni  $testimoni
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategory $subcategory)
+    public function destroy(Testimoni $testimoni)
     {
-        file::delete('uploads/' . $subcategory->gambar);
+        file::delete('uploads/' . $testimoni->gambar);
         
-        $subcategory->delete();
+        $testimoni->delete();
 
         return response()->json([
             'message' => 'succes'

@@ -20,10 +20,10 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $slider - Slider::all();
+        $sliders = Slider::all();
 
         return response()->json([
-            'data' => $slider
+            'data' => $sliders
         ]);
     }
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subcategory;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-class SubcategoryController extends Controller
+class MemberController extends Controller
 {
     public function __construct()
     {
@@ -20,10 +20,10 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Subcategory::all();
+        $members = Member::all();
 
         return response()->json([
-            'data' => $subcategories
+            'data' => $members
         ]);
     }
 
@@ -46,10 +46,14 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         $validator = validator::make($request->all(), [
-            'id_kategori' => 'required',
-            'nama_subkategori' => 'required',
-            'deskripsi' => 'required',
-            'gambar' => 'required|image|mines:jpg,png,jpeg,webp'
+            'nama_member' => 'required',
+            'provinsi' => 'required',
+            'kabupaten' => 'required',
+            'kecamatan' => 'required',
+            'detail_alamat' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         if ($validator->fails()){
@@ -61,27 +65,20 @@ class SubcategoryController extends Controller
 
         $input = $request->all();
 
-        if ($request->has('gambar')) {
-            $gambar = $request->file('gambar');
-            $nama_gambar = time() . rand(1, 9) .'.'. $gambar->getClientOriginalExtension();
-            $gambar->move('uploads', $nama_gambar);
-            $input['gambar'] = $nama_gambar;
-        }
-
-        $subcategory = Subcategory::create($input);
+        $member = Member::create($input);
 
         return response()->json([
-            'data' => $subcategory
+            'data' => $member
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Subcategory $subcategory)
+    public function show(Member $member)
     {
         //
     }
@@ -89,10 +86,10 @@ class SubcategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcategory $subcategory)
+    public function edit(Member $member)
     {
         //
     }
@@ -101,14 +98,20 @@ class SubcategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcategory $subcategory)
+    public function update(Request $request, Member $member)
     {
         $validator = validator::make($request->all(), [
-            'nama_kategori' => 'required',
-            'deskripsi' => 'required',
+            'nama_member' => 'required',
+            'provinsi' => 'required',
+            'kabupaten' => 'required',
+            'kecamatan' => 'required',
+            'detail_alamat' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         if ($validator->fails()){
@@ -119,37 +122,24 @@ class SubcategoryController extends Controller
         }
 
         $input = $request->all();
-
-        if ($request->has('gambar')) {
-            file::delete('uploads/' . $subcategory->gambar);
-            $gambar = $request->file('gambar');
-            $nama_gambar = time() . rand(1, 9) .'.'. $gambar->getClientOriginalExtension();
-            $gambar->move('uploads', $nama_gambar);
-            $input['gambar'] = $nama_gambar;
-        } else {
-            unsert($input['gambar']);
-        }
-
         
-        $subcategory->update($input);
+        $member->update($input);
 
         return response()->json([
             'message' => 'succes',
-            'data' => $subcategory
+            'data' => $member
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategory $subcategory)
-    {
-        file::delete('uploads/' . $subcategory->gambar);
-        
-        $subcategory->delete();
+    public function destroy(Member $member)
+    {        
+        $member->delete();
 
         return response()->json([
             'message' => 'succes'
