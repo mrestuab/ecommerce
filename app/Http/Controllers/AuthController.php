@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    public function index(){
+        
+    }
     public function login(){
         $credentials = request(['email','password']);
 

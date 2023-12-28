@@ -44,11 +44,11 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $validator = validator::make($request->all(), [
+    {  
+        $validator = Validator::make($request->all(), [
             'nama_kategori' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'required|image|mines:jpg,png,jpeg,webp'
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,webp'
         ]);
 
         if ($validator->fails()){
@@ -107,7 +107,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $validator = validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nama_kategori' => 'required',
             'deskripsi' => 'required',
         ]);
