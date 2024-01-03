@@ -20,9 +20,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
 Route::get('/register', function () {
     return view('register');
@@ -30,5 +30,7 @@ Route::get('/register', function () {
 Route::post('login', [AuthController::class, 'login_member']);
 Route::post('logout', [AuthController::class, 'logout_member']);
 
-Route::get('login', [AuthController::class, 'index']);
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::get('logout', [AuthController::class, 'logout']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
