@@ -11,7 +11,14 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this ->middleware('auth:api', ['except' => 'index']);
+        $this->middleware('auth')->only(['list']);
+        $this->middleware('auth:api')->only(['store', 'update', 'delete']);
+    }
+
+    public function list()
+    {
+        $this->middleware('auth');
+        return view('kategori.index');
     }
     /**
      * Display a listing of the resource.
@@ -70,6 +77,7 @@ class CategoryController extends Controller
         $category = Category::create($input);
 
         return response()->json([
+            'success' => true,
             'data' => $category
         ]);
     }
@@ -135,6 +143,7 @@ class CategoryController extends Controller
         $category->update($input);
 
         return response()->json([
+            'success' => true,
             'message' => 'succes',
             'data' => $category
         ]);
@@ -149,10 +158,10 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         file::delete('uploads/' . $category->gambar);
-        
         $category->delete();
 
         return response()->json([
+            'success' => true,
             'message' => 'succes'
         ]);
     }
