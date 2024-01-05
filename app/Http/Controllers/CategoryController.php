@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only(['list']);
-        // $this->middleware('auth:api')->only(['update', 'delete']);
+        // $this->middleware('auth:api')->only(['store', 'update', 'delete']);
     }
 
     public function list()
@@ -35,23 +35,13 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
         // dd($request->all());
         // end();
         $validator = Validator::make($request->all(), [
@@ -98,17 +88,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -141,12 +120,12 @@ class CategoryController extends Controller
             unset($input['gambar']);
         }
 
-        
+
         $category->update($input);
 
         return response()->json([
             'success' => true,
-            'message' => 'succes',
+            'message' => 'success',
             'data' => $category
         ]);
     }
@@ -164,7 +143,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'succes'
+            'message' => 'success'
         ]);
     }
 }

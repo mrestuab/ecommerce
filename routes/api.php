@@ -55,5 +55,10 @@ Route::group([
     Route::post('order/ubah_status/{order}', [OrderController::class, 'ubah_status']);
 
     Route::get('reports', [ReportController::class, 'index']);
+
+    Route::post('login-member', [AuthController::class, 'login_member']);
+    Route::post('logout-member', [AuthController::class, 'logout_member']);
+    Route::post('login', [AuthController::class, 'login']);
 });
+
 

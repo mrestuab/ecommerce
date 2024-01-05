@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// VIEWS MEMBER
+// VIEWS
 Route::get('/', function () {
     return view('home');
 });
@@ -51,15 +51,4 @@ Route::get('/kategori', function () {
     return view('kategori.index');
 });
 
-
-// ENDPOINT LIST
-//Auth
-Route::post('login-member', [AuthController::class, 'login_member']);
-Route::post('logout-member', [AuthController::class, 'logout_member']);
-Route::post('login', [AuthController::class, 'login']);
 Route::get('logout', [AuthController::class, 'logout']);
-
-//kategori
-Route::get('/kategori', [CategoryController::class, 'list']);
-
-Route::get('/dashboard', [DashboardController::class, 'index']);

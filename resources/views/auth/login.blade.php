@@ -1,144 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
 
-<head>
+@section('title', 'REAG | Login Admin')
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="csrf-token" content="{{ csrf_token()}}">
+@section('meta')
+<meta name="csrf-token" content="{{ csrf_token()}}">
+@endsection
 
-    <title>Login</title>
+@section('content')
+<div class="max-w-md h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+    <a href="<?php echo url('/') ?>" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <img src="img/r.png" class="h-8" alt="Reag Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">REAG</span>
+    </a><br />
 
-    <!-- Custom fonts for this atemplate-->
-    <link href="/sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Sign in Admin
+            </h1>
 
-    <!-- Custom styles for this template-->
-    <link href="/sbadmin2/css/sb-admin-2.min.css" rel="stylesheet">
+            <!-- Error Alert -->
+            @if ($errors->any())
+            <p>{{$errors->first()}}</p>
+            <div class="alert alert-danger">
+                <strong>Gagal</strong>
+            </div>
+            @endif
 
-</head>
-
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-6">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
-                                    @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <strong>Gagal</strong>
-                                        <p>{{$errors->first()}}</p>
-                                    </div>
-                                    @endif
-                                    <form class="form-login user" method="POST" action="/login">
-                                        @csrf
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user email"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email">
-                                        </div>
-                                        @error('email')
-                                        <small class="text-danger">{{$message}}</small>
-                                        @enderror
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user password"
-                                                id="exampleInputPassword" placeholder="Password" name="password">
-                                        </div>
-                                        @error('password')
-                                        <small class="text-danger">{{$message}}</small>
-                                        @enderror
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
-                                </div>
-                            </div>
+            <form method="POST" action="/login" class="form-login user space-y-4 md:space-y-6">
+                @csrf
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                @error('email')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
+                <div>
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                    <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                @error('password')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
+                <div class="flex items-center justify-between">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
                         </div>
                     </div>
+                    <!-- <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Lupa kata sandi?</a> -->
                 </div>
-
-            </div>
-
+                <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+            </form>
         </div>
-
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="/sbadmin2/vendor/jquery/jquery.min.js"></script>
-    <script src="/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="/sbadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+</div>
 
 
+@endsection
+
+@push('js')
 <script type="module">
     $(function() {
 
-    function setCookie(name,volue,days){
-        var expires = "";
-        if(days){
-            var date = new Date();
-            date.setTime(data.getTime() + (days*24*60*60*1000));
-            expires = "; expires=" + date.toUTCString();
+        function setCookie(name, volue, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(data.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "-" + (value || "") + expires + "; path=/";
         }
-        document.cookie = name + "-" + (value || "") + expires + "; path=/";
-    }
 
-        $('.form-login').submit(function(e){
+        $('.form-login').submit(function(e) {
             e.preventDefault();
 
-            const email = $('.email').val();
-            const password = $('.password').val();
+            const email = $('input[name="email"]').val();
+            const password = $('input[name="password"]').val();
             const csrf_token = $('meta[name="csrf-token"]').attr('content');
 
+            const payload = new FormData();
+            payload.set('email', email);
+            payload.set('password', password);
+            payload.set('_token', csrf_token);
+
             $.ajax({
-                url : '/login',
-                type : 'POST',
-                data : {
-                    email : email,
-                    password : password,
-                    _token : csrf_token
-                },
-                success : function(data){
-                    if (!data.succes){
+                url: '/api/login',
+                type: 'POST',
+                data: payload,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    if (!data.succes) {
                         alert(data.message)
+                    } else {
+                        localStorage.setItem('token', data.token)
+                        window.location.href = '/dashboard';
                     }
-                    console.log("🚀 ~ file: login.blade.php:136 ~ $ ~ data:", data)
-                    localStorage.setItem('token', data.token, )
-                    window.location.href = '/dashboard';
                 }
             });
         });
 
     });
 </script>
-
-</body>
-
-</html>
+@endpush

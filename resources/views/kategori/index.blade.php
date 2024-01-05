@@ -1,4 +1,9 @@
 @extends('layout.app-admin')
+@extends('components.footer.admin')
+@extends('components.navbar.admin')
+@extends('components.sidebar')
+
+@section('title', 'REAG | Kategori')
 
 @section('content')
 <div class="flex justify-between mb-4">
@@ -84,7 +89,7 @@
 
 @push('js')
 <script type="module">
-    
+
     $(function() {
         const { Modal } = import('flowbite')
 
@@ -104,8 +109,8 @@
                         <th>${val.deskripsi}</th>
                         <th><img src="/uploads/${val.gambar}" width="150"></th>
                         <th>
-                            <button data-modal-target="default-modal" data-modal-show="default-modal" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline modal-ubah">Ubah</button>
-                            <a href="#" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn-hapus">Hapus</a>
+                        <button id="modal-ubah" data-modal-target="default-modal" data-modal-show="default-modal" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ubah</button>
+                        <button id="btn-hapus" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Hapus</button>
                             </th>
                         </tr>
                         `;
@@ -115,14 +120,11 @@
             }
         })
 
-        $(document).on('click', '.btn-hapus', function() {
+        $(document).on('click', '#btn-hapus', function() {
             const id = $(this).data('id')
             const token = localStorage.getItem('token')
 
-            confirm_dialog = confirm('Apakah anda yakin?');
-
-            console.log(token)
-            return
+            const confirm_dialog = confirm('Yakin menghapus data ini?');
 
             if (confirm_dialog) {
                 $.ajax({
@@ -132,9 +134,9 @@
                         "Authorization": token
                     },
 
-                    succes: function(data) {
-                        if (data.message == 'succes') {
-                            alert('data berhasil dihapus')
+                    success: function(data) {
+                        if (data.success) {
+                            alert('Data berhasil dihapus')
                             location.reload()
                         }
                     }
@@ -173,7 +175,6 @@
                         }
                     }
                 })
-                console.log("🚀 ~ file: index.blade.php:170 ~ $ ~ frmdata:", frmdata)
             });
         });
 
@@ -184,7 +185,6 @@
             }) {
                 $('input[name="nama_kategori"]').val(data.nama_kategori);
                 $('textarea[name="deskripsi"]').val(data.deskripsi);
-                $('#default-modal').toggle();
             });
 
             $('.form-kategori').submit(function(e) {
@@ -214,7 +214,6 @@
                         }
                     }
                 })
-                console.log("🚀 ~ file: index.blade.php:170 ~ $ ~ frmdata:", frmdata)
             });
 
         });

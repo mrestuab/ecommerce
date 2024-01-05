@@ -28,6 +28,7 @@ class AuthController extends Controller
             ]);
         }
 
+
         return response()->json([
             'succes' => false,
             'message' => 'email atau password salah'
