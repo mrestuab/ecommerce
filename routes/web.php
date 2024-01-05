@@ -50,5 +50,8 @@ Route::get('/dashboard', function () {
 Route::get('/kategori', function () {
     return view('kategori.index');
 });
+Route::get('/produk', function () {
+    return view('produk.index');
+});
 
 Route::get('logout', [AuthController::class, 'logout']);
