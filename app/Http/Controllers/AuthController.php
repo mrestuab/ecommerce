@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function index(){
-        return view('auth.login');
-    }
-
     public function login(Request $request){
         $this->validate($request, [
             'email' => 'required|email',
@@ -25,12 +21,16 @@ class AuthController extends Controller
 
         if(auth()->attempt($credentials)){
             $token = Auth::guard('api')->attempt($credentials);
-            cookie()->queue(cookie('token', $token, 60));
-            return redirect('/dashboard');
+            return response()->json([
+                'succes' => true,
+                'message' => 'login berhasil',
+                'token' => $token
+            ]);
         }
 
-        return back()->withErrors([
-            'error' => 'email or password is wrong'
+        return response()->json([
+            'succes' => false,
+            'message' => 'email atau password salah'
         ]);
     }
 

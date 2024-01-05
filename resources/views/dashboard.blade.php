@@ -1,3 +1,3 @@
-@extends('layout.app')
+@extends('layout.app-admin')
 
 @section('title', 'Dashboard')
