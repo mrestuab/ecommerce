@@ -1,13 +1,8 @@
 @extends('layout.app-admin')
-@extends('components.footer.admin')
-@extends('components.navbar.admin')
-@extends('components.sidebar')
-
-@section('title', 'REAG | Kategori')
 
 @section('content')
 <div class="flex justify-between mb-4">
-    <h1 class="text-xl font-medium mb-4 text-gray-800">Data Kategori</h1>
+    <h1 class="text-xl font-medium mb-4 text-gray-800">Data Produk</h1>
 
     <button id="modal-tambah" data-modal-target="default-modal" data-modal-show="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
         Tambah
@@ -21,13 +16,28 @@
 
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Kategori
+                    Nama Barang
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Deskripsi
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Gambar
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Harga
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Diskon
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tags
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Warna
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Stok
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only"></span>
@@ -89,10 +99,10 @@
 
 @push('js')
 <script type="module">
-
+    
     $(function() {
         $.ajax({
-            url: '/api/categories',
+            url: '/api/produtcs',
             success: function({
                 data
             }) {
@@ -102,12 +112,12 @@
                     row += `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th class="px-6 py-4 whitespace-nowrap dark:text-white">${index+1}</th>
-                        <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${val.nama_kategori}</th>
+                        <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${val.nama_barang}</th>
                         <th>${val.deskripsi}</th>
                         <th><img src="/uploads/${val.gambar}" width="150"></th>
                         <th>
-                        <button id="modal-ubah" data-modal-target="default-modal" data-modal-show="default-modal" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ubah</button>
-                        <button id="btn-hapus" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Hapus</button>
+                            <button data-modal-target="default-modal" data-modal-show="default-modal" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline modal-ubah">Ubah</button>
+                            <a href="#" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn-hapus">Hapus</a>
                             </th>
                         </tr>
                         `;
@@ -117,23 +127,26 @@
             }
         })
 
-        $(document).on('click', '#btn-hapus', function() {
+        $(document).on('click', '.btn-hapus', function() {
             const id = $(this).data('id')
             const token = localStorage.getItem('token')
 
-            const confirm_dialog = confirm('Yakin menghapus data ini?');
+            confirm_dialog = confirm('Apakah anda yakin?');
+
+            console.log(token)
+            return
 
             if (confirm_dialog) {
                 $.ajax({
-                    url: '/api/categories/' + id,
+                    url: '/api/produtcs/' + id,
                     type: "DELETE",
                     headers: {
                         "Authorization": token
                     },
 
-                    success: function(data) {
-                        if (data.success) {
-                            alert('Data berhasil dihapus')
+                    succes: function(data) {
+                        if (data.message == 'succes') {
+                            alert('data berhasil dihapus')
                             location.reload()
                         }
                     }
@@ -156,7 +169,7 @@
                 const token = localStorage.getItem('token')
                 const frmdata = new FormData(this);
                 $.ajax({
-                    url: 'api/categories',
+                    url: 'api/produtcs',
                     type: 'POST',
                     data: frmdata,
                     cache: false,
@@ -172,17 +185,18 @@
                         }
                     }
                 })
+                console.log("🚀 ~ file: index.blade.php:170 ~ $ ~ frmdata:", frmdata)
             });
         });
 
-        $(document).on('click', '#modal-ubah', function() {
+        $(document).on('click', '.modal-ubah', function() {
             const id = $(this).data('id');
-            $.get('/api/categories/' + id, function({
+            $.get('/api/produtcs/' + id, function({
                 data
             }) {
                 $('input[name="nama_kategori"]').val(data.nama_kategori);
                 $('textarea[name="deskripsi"]').val(data.deskripsi);
-                $('#default-modal').show();
+                $('#default-modal').toggle();
             });
 
             $('.form-kategori').submit(function(e) {
@@ -196,7 +210,7 @@
                 const token = localStorage.getItem('token')
                 const frmdata = new FormData(this);
                 $.ajax({
-                    url: `api/categories/${id}?_method=PUT`,
+                    url: `api/produtcs/${id}?_method=PUT`,
                     type: 'POST',
                     data: frmdata,
                     cache: false,
@@ -212,6 +226,7 @@
                         }
                     }
                 })
+                console.log("🚀 ~ file: index.blade.php:170 ~ $ ~ frmdata:", frmdata)
             });
 
         });
