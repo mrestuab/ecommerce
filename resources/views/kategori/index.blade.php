@@ -21,7 +21,7 @@
 
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Nama Produk
+                    Kategori
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Deskripsi
@@ -178,13 +178,14 @@
             });
         });
 
-        $(document).on('click', '.modal-ubah', function() {
+        $(document).on('click', '#modal-ubah', function() {
             const id = $(this).data('id');
             $.get('/api/categories/' + id, function({
                 data
             }) {
                 $('input[name="nama_kategori"]').val(data.nama_kategori);
                 $('textarea[name="deskripsi"]').val(data.deskripsi);
+                $('#default-modal').show();
             });
 
             $('.form-kategori').submit(function(e) {
