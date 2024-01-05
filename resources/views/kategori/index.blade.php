@@ -86,9 +86,6 @@
 <script type="module">
     
     $(function() {
-        const { Modal } = import('flowbite')
-
-
         $.ajax({
             url: '/api/categories',
             success: function({
