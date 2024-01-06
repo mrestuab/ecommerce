@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -45,15 +46,9 @@ class AuthController extends Controller
 
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
-            'nama_member' => 'required',
-            'provinsi' => 'required',
-            'kabupaten' => 'required',
-            'kecamatan' => 'required',
-            'detail_alamat' => 'required',
-            'no_hp' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|same:konfirmasi_password',
-            'konfirmasi_password' => 'required|same:password'
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -65,8 +60,8 @@ class AuthController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($request->password);
-        unset($input['konfirmasi_password']);
-        $member = Member::create($input);
+        // unset($input['konfirmasi_password']);
+        $member = User::create($input);
         return response()->json([
             'data' => $member
         ]);
@@ -107,8 +102,8 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function logout_member(){
+    public function logout_admin(){
         Session::flush();
-        return redirect('/login_member');
+        return redirect('/login-admin');
     }
 }
