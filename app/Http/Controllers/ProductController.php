@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this ->middleware('auth:api', ['except' => 'index']);
+        // $this ->middleware('auth:api', ['except' => 'index']);
     }
     /**
      * Display a listing of the resource.
@@ -48,7 +48,7 @@ class ProductController extends Controller
         $validator = validator::make($request->all(), [
             'id_kategori' => 'required',
             'nama_barang' => 'required',
-            'gambar' => 'required|image|mines:jpg,png,jpeg,webp',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,webp',
             'deskripsi' => 'required',
             'harga' => 'required',
             'diskon' => 'required',
@@ -118,7 +118,7 @@ class ProductController extends Controller
             'id_kategori' => 'required',
             'id_subkategori' => 'required',
             'nama_barang' => 'required',
-            'gambar' => 'required|image|mines:jpg,png,jpeg,webp',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,webp',
             'deskripsi' => 'required',
             'harga' => 'required',
             'diskon' => 'required',
