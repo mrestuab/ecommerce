@@ -47,7 +47,6 @@ class ProductController extends Controller
     {
         $validator = validator::make($request->all(), [
             'id_kategori' => 'required',
-            'id_subkategori' => 'required',
             'nama_barang' => 'required',
             'gambar' => 'required|image|mines:jpg,png,jpeg,webp',
             'deskripsi' => 'required',
@@ -55,7 +54,8 @@ class ProductController extends Controller
             'diskon' => 'required',
             'tags' => 'required',
             'sku' => 'required',
-            'warna' => 'required'
+            'warna' => 'required',
+            'stok' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -124,7 +124,8 @@ class ProductController extends Controller
             'diskon' => 'required',
             'tags' => 'required',
             'sku' => 'required',
-            'warna' => 'required'
+            'warna' => 'required',
+            'stok' => 'required'
         ]);
 
         if ($validator->fails()){
