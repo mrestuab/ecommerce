@@ -8,8 +8,12 @@
         <div class="flex items-center space-x-6 rtl:space-x-reverse">
             <a href="<?php echo url('faq') ?>" class="text-sm  text-gray-500 dark:text-white hover:underline">Support</a>
             <a href="<?php echo url('register') ?>" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Register</a>
-            <a href="<?php echo url('login_member') ?>" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Login</a>
-            <a href="<?php echo url('cart') ?>" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline"><img src="img/shopping-cart.png" alt=""></a>
+            <a href="<?php echo url('login') ?>" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Login</a>
+            <a href="<?php echo url('cart') ?>" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9V4a3 3 0 0 0-6 0v5m9.92 10H2.08a1 1 0 0 1-1-1.077L2 6h14l.917 11.923A1 1 0 0 1 15.92 19Z" />
+                </svg>
+            </a>
         </div>
     </div>
 </nav>

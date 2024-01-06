@@ -21,11 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/login_member', function () {
-    return view('login_member');
+Route::get('/login', function () {
+    return view('auth.login');
 });
 Route::get('/register', function () {
-    return view('register');
+    return view('auth.register');
 });
 Route::get('/faq', function () {
     return view('faq');
@@ -41,8 +41,8 @@ Route::get('/description', function () {
 });
 
 // VIEWS ADMIN
-Route::get('/login', function () {
-    return view('auth.login');
+Route::get('/login-admin', function () {
+    return view('auth.login-admin');
 });
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -55,3 +55,4 @@ Route::get('/produk', function () {
 });
 
 Route::get('logout', [AuthController::class, 'logout']);
+Route::get('logout-admin', [AuthController::class, 'logout_admin']);
