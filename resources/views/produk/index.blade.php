@@ -1,4 +1,7 @@
 @extends('layout.app-admin')
+@extends('components.footer.admin')
+@extends('components.navbar.admin')
+@extends('components.sidebar')@section('title', 'REAG | Produk')
 
 @section('content')
 <div class="flex justify-between mb-4">
