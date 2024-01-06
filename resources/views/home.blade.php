@@ -13,6 +13,7 @@
                     <img alt="{{$category['nama_kategori']}}" loading="lazy" width="750" height="1624"
                         decoding="async" data-nimg="1" class=""
                         style="color:transparent" src="/uploads/{{$category['gambar']}}">
+                        <span class="">{{$category['nama_kategori']}}</span>
                 </div>
             </a>
         @endforeach
