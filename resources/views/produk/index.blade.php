@@ -1,4 +1,4 @@
-@extends('layout.app-admin')
+@extends('admin.app')
 @extends('components.footer.admin')
 @extends('components.navbar.admin')
 @extends('components.sidebar')@section('title', 'REAG | Produk')
@@ -7,7 +7,7 @@
 <div class="flex justify-between mb-4">
     <h1 class="text-xl font-medium mb-4 text-gray-800">Data Produk</h1>
 
-    <button id="modal-tambah" data-modal-target="default-modal" data-modal-show="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    <button id="modal-tambah" data-modal-target="default-modal" data-modal-show="default-modal" class="block text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-blue-800" type="button">
         Tambah
     </button>
 </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="flex items-end px-4 pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                 <button data-modal-hide="default-modal" type="button" class="me-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Batal</button>
-                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
+                                <button type="submit" class="text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-blue-800">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -122,7 +122,7 @@
 
 @push('js')
 <script type="module">
-    
+
     $(function() {
         $.ajax({
             url: '/api/produtcs',
@@ -182,7 +182,7 @@
             $('textarea[name="deskripsi"]').val('')
             $('input[name="harga"]').val('')
             $('input[name="diskon"]').val('')
-            $('input[name="tags"]').val('') 
+            $('input[name="tags"]').val('')
             $('input[name="warna"]').val('')
             $('input[name="sku"]').val('')
             $('input[name="stok"]').val('')
