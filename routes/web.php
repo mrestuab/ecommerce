@@ -39,6 +39,11 @@ Route::get('/product-list', function () {
 Route::get('/description', function () {
     return view('description');
 });
+Route::get('/tentang-kami', function () {
+    return view('tentang-kami');
+});
+
+
 
 // VIEWS ADMIN
 Route::get('/login-admin', function () {
