@@ -1,6 +1,6 @@
 @section('navbar')
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-1 px-4">
         <a href="<?php echo url('/') ?>" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/img/r.png" class="h-8" alt="Reag Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">REAG</span>
@@ -27,18 +27,18 @@
             </button>
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-language">
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 text-sm">
-                <li class="mb-2">
-                    <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Toko</a>
+            <ul class="flex justify-items-center items-center flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 text-sm">
+                <li>
+                    <a href="<?php echo url('/') ?>" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Toko</a>
                 </li>
-                <li class="mb-2">
-                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Tentang Kami</a>
+                <li>
+                    <a href="<?php echo url('tentang-kami') ?>" class="text-gray-900 dark:text-white hover:underline">Tentang Kami</a>
                 </li>
-                <li class="mb-2">
+                <li>
                     <a href="<?php echo url('products') ?>" class="text-gray-900 dark:text-white hover:underline">Produk</a>
                 </li>
 
-                <li class="mb-2">
+                <li>
                     <a href="<?php echo url('support') ?>" class="text-gray-900 dark:text-white hover:underline">Support</a>
                 </li>
             </ul>
