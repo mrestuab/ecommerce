@@ -60,18 +60,18 @@
 
                 <div class="row">
                     <div class="rol-md-12">
-                        <form class="form-kategori">
+                        <form class="category-form">
                             <div class="mb-5">
-                                <label for="nama_kategori" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kategori</label>
-                                <input type="text" id="nama_kategori" name="nama_kategori" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kategori</label>
+                                <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             </div>
                             <div class="mb-5">
-                                <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
-                                <textarea required id="deskripsi" name="deskripsi" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
+                                <textarea required id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                             </div>
                             <div class="mb-5">
-                                <label for="nama_kategori" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
-                                <input accept="image/*" type="file" name="gambar">
+                                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
+                                <input accept="image/*" type="file" name="image">
                             </div>
                             <div class="flex items-end px-4 pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                 <button data-modal-hide="default-modal" type="button" class="me-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Batal</button>
@@ -102,9 +102,9 @@
                     row += `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th class="px-6 py-4 whitespace-nowrap dark:text-white">${index+1}</th>
-                        <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${val.nama_kategori}</th>
-                        <th>${val.deskripsi}</th>
-                        <th><img src="/uploads/${val.gambar}" width="150"></th>
+                        <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${val.name}</th>
+                        <th>${val.description}</th>
+                        <th><img src="/uploads/${val.image}" width="150"></th>
                         <th>
                         <button id="modal-ubah" data-modal-target="default-modal" data-modal-show="default-modal" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ubah</button>
                         <button id="btn-hapus" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Hapus</button>
@@ -142,12 +142,12 @@
         })
 
         $('#modal-tambah').click(function() {
-            $('input[name="nama_kategori"]').val('')
-            $('textarea[name="deskripsi"]').val('')
+            $('input[name="name"]').val('')
+            $('textarea[name="description"]').val('')
 
-            $('.form-kategori').submit(function(e) {
+            $('.category-form').submit(function(e) {
                 e.preventDefault()
-                if (!this.gambar.value) {
+                if (!this.image.value) {
                     alert('Gambar is required')
                     return
                 }
@@ -180,14 +180,14 @@
             $.get('/api/categories/' + id, function({
                 data
             }) {
-                $('input[name="nama_kategori"]').val(data.nama_kategori);
-                $('textarea[name="deskripsi"]').val(data.deskripsi);
+                $('input[name="name"]').val(data.name);
+                $('textarea[name="description"]').val(data.description);
                 $('#default-modal').show();
             });
 
-            $('.form-kategori').submit(function(e) {
+            $('.category-form').submit(function(e) {
                 e.preventDefault()
-                if (!this.gambar.value) {
+                if (!this.image.value) {
                     alert('Gambar is required')
                     return
                 }

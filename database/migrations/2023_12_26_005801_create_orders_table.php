@@ -15,20 +15,23 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_member');
-            $table->integer('invoice');
-            $table->integer('grand_total');
             $table->timestamps();
         });
 
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
             $table->integer('id_order');
-            $table->integer('id_produk');
-            $table->integer('jumlah');
-            $table->integer('size');
-            $table->integer('color');
-            $table->integer('total');
+            $table->integer('id_user');
+            $table->integer('id_product');
+            $table->integer('recipient_name');
+            $table->integer('recipient_phone');
+            $table->integer('recipient_email');
+            $table->integer('address');
+            $table->integer('province');
+            $table->integer('subdistrict');
+            $table->integer('shipping_cost');
+            $table->integer('quantity');
+            $table->integer('total')->default(0);
             $table->timestamps();
         });
 

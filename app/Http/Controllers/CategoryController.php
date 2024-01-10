@@ -15,11 +15,6 @@ class CategoryController extends Controller
         // $this->middleware('auth:api')->only(['store', 'update', 'delete']);
     }
 
-    public function list()
-    {
-        $this->middleware('auth');
-        return view('kategori.index');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -42,12 +37,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // end();
         $validator = Validator::make($request->all(), [
-            'nama_kategori' => 'required',
-            'deskripsi' => 'required',
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,webp'
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,webp'
         ]);
 
         if ($validator->fails()){
@@ -59,11 +52,11 @@ class CategoryController extends Controller
 
         $input = $request->all();
 
-        if ($request->has('gambar')) {
-            $gambar = $request->file('gambar');
-            $nama_gambar = time() . rand(1, 9) .'.'. $gambar->getClientOriginalExtension();
-            $gambar->move('uploads', $nama_gambar);
-            $input['gambar'] = $nama_gambar;
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $image_name = time() . rand(1, 9) .'.'. $image->getClientOriginalExtension();
+            $image->move('uploads', $image_name);
+            $input['image'] = $image_name;
         }
 
         $category = Category::create($input);
@@ -97,8 +90,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validator = Validator::make($request->all(), [
-            'nama_kategori' => 'required',
-            'deskripsi' => 'required',
+            'name' => 'required',
+            'description' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -110,14 +103,14 @@ class CategoryController extends Controller
 
         $input = $request->all();
 
-        if ($request->has('gambar')) {
-            file::delete('uploads/' . $category->gambar);
-            $gambar = $request->file('gambar');
-            $nama_gambar = time() . rand(1, 9) .'.'. $gambar->getClientOriginalExtension();
-            $gambar->move('uploads', $nama_gambar);
-            $input['gambar'] = $nama_gambar;
+        if ($request->has('name')) {
+            file::delete('uploads/' . $category->image);
+            $image = $request->file('image');
+            $image_name = time() . rand(1, 9) .'.'. $image->getClientOriginalExtension();
+            $image->move('uploads', $image_name);
+            $input['image'] = $image_name;
         } else {
-            unset($input['gambar']);
+            unset($input['image']);
         }
 
 
@@ -138,7 +131,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        file::delete('uploads/' . $category->gambar);
+        file::delete('uploads/' . $category->image);
         $category->delete();
 
         return response()->json([
