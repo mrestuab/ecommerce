@@ -46,7 +46,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = validator::make($request->all(), [
-            'id_kategori' => '',
             'nama_barang' => 'required',
             'gambar' => 'required|image|mimes:jpg,png,jpeg,webp',
             'deskripsi' => 'required',
