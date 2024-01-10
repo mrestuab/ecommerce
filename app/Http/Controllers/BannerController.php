@@ -12,13 +12,8 @@ class BannerController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only(['list']);
-        // $this->middleware('auth:api')->only(['store', 'update', 'delete']);
     }
-    public function list()
-    {
-        $this->middleware('auth');
-        return view('banner.index');
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +47,7 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,webp'
+            'image' => 'required|image|mimes:jpg,png,jpeg,webp'
         ]);
 
         if ($validator->fails()){
@@ -64,11 +59,11 @@ class BannerController extends Controller
 
         $input = $request->all();
 
-        if ($request->has('gambar')) {
-            $gambar = $request->file('gambar');
-            $nama_gambar = time() . rand(1, 9) .'.'. $gambar->getClientOriginalExtension();
-            $gambar->move('uploads', $nama_gambar);
-            $input['gambar'] = $nama_gambar;
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $nama_image = time() . rand(1, 9) .'.'. $image->getClientOriginalExtension();
+            $image->move('uploads', $nama_image);
+            $input['image'] = $nama_image;
         }
 
         $banner = Banner::create($input);
@@ -80,42 +75,6 @@ class BannerController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Banner $banner)
-    {
-        return response()->json([
-            'data' => $banner
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Banner $banner)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Banner $banner)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Banner  $banner
@@ -123,7 +82,7 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        file::delete('uploads/' . $banner->gambar);
+        file::delete('uploads/' . $banner->image);
         $banner->delete();
 
         return response()->json([

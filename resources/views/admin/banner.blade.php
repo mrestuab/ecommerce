@@ -20,6 +20,9 @@
                 <th scope="col" class="px-6 py-3">
                     Gambar
                 </th>
+
+                <th scope="col" class="px-6 py-3">
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -51,7 +54,7 @@
                         <form class="form-banner">
                                 <div class="mb-5">
                                 <label for="banner" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
-                                <input accept="image/*" type="file" name="gambar">
+                                <input accept="image/*" type="file" name="image">
                             </div>
                             <div class="flex items-end px-4 pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                 <button data-modal-hide="default-modal" type="button" class="me-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Batal</button>
@@ -81,8 +84,7 @@
                 data.map(function(val, index) {
                     row += `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th class="px-6 py-4 whitespace-nowrap dark:text-white">${index+1}</th>
-                        <th><img src="/uploads/${val.gambar}" width="150"></th>
+                        <th><img src="/uploads/${val.image}" width="150"></th>
                         <th>
                         <button id="btn-hapus" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Hapus</button>
                             </th>
@@ -121,7 +123,7 @@
         $('#modal-tambah').click(function() {
             $('.form-banner').submit(function(e) {
                 e.preventDefault()
-                if (!this.gambar.value) {
+                if (!this.image.value) {
                     alert('Gambar is required')
                     return
                 }

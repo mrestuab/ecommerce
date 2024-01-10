@@ -2156,6 +2156,9 @@ input:checked + .toggle-bg{
 .pt-8{
   padding-top: 2rem;
 }
+.pl-48{
+  padding-left: 12rem;
+}
 .text-left{
   text-align: left;
 }
