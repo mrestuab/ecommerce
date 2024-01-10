@@ -31,7 +31,9 @@
     @yield('navbar')
 
     <!-- Content -->
-    @yield('content')
+    <div class="bg-gray-100 py-5">
+        @yield('content')
+    </div>
 
     @yield(('footer'))
 

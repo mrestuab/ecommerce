@@ -116,7 +116,6 @@ class ProductController extends Controller
     {
         $validator = validator::make($request->all(), [
             'id_kategori' => 'required',
-            'id_subkategori' => 'required',
             'nama_barang' => 'required',
             'gambar' => 'required|image|mimes:jpg,png,jpeg,webp',
             'deskripsi' => 'required',

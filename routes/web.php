@@ -22,10 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('login');
 });
 Route::get('/register', function () {
-    return view('auth.register');
+    return view('register');
 });
 Route::get('/faq', function () {
     return view('faq');
@@ -33,24 +33,29 @@ Route::get('/faq', function () {
 Route::get('/cart', function () {
     return view('cart');
 });
-Route::get('/product-list', function () {
-    return view('product-list');
+Route::get('/products', function () {
+    return view('products');
 });
-Route::get('/description', function () {
-    return view('description');
+Route::get('/product/{id}', function () {
+    return view('product-detail');
 });
+Route::get('/tentang-kami', function () {
+    return view('tentang-kami');
+});
+
+
 
 // VIEWS ADMIN
 Route::get('/login-admin', function () {
-    return view('auth.login-admin');
+    return view('admin.login');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard-admin', function () {
+    return view('admin.dashboard');
 });
-Route::get('/kategori', function () {
-    return view('kategori.index');
+Route::get('/category-admin', function () {
+    return view('admin.category');
 });
-Route::get('/produk', function () {
+Route::get('/product-admin', function () {
     return view('produk.index');
 });
 

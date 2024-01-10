@@ -18,8 +18,8 @@
 
     <!-- Custom styles for this template-->
     <!-- <link href="/sbadmin2/css/sb-admin-2.min.css" rel="stylesheet"> -->
-    <link href="/css/app.css" rel="stylesheet">
-
+    <!-- <link href="/css/app.css" rel="stylesheet"> -->
+    <link rel="preload" href="/css/app.css" as="style" onload="this.rel='stylesheet'">
 </head>
 
 <body id="page-top" class="bg-gray-50 dark:bg-gray-800 scrollbar scrollbar-w-3 scrollbar-thumb-rounded-[0.25rem] scrollbar-track-slate-200 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-900 dark:scrollbar-thumb-gray-700">
@@ -41,6 +41,8 @@
     </div>
 
     @yield('footer')
+    </di>
+
 
     <!-- Vendor -->
     <script src="/js/vendor/jquery/jquery.min.js"></script>
