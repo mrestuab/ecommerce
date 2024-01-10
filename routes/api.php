@@ -10,6 +10,7 @@ use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\BannerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,9 @@ Route::group([
        'sliders' => SliderController::class,
        'produtcs' => ProductController::class,
        'reviews' => ReviewController::class,
-       'orders' => OrderController::class
+       'orders' => OrderController::class,
+       'banner' => BannerController::class,
+
     ]);
 
     Route::get('order/dikonfirmasi', [OrderController::class, 'dikonfirmasi']);

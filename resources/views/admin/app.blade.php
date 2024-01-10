@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/r2.png" type="image">
+    <link rel="icon" href="/img/r2.png" type="image">
+    @yield('meta')
 
     <title>@yield('title')</title>
 
@@ -21,6 +22,7 @@
     <!-- <link href="/css/app.css" rel="stylesheet"> -->
     <link rel="preload" href="/css/app.css" as="style" onload="this.rel='stylesheet'">
 </head>
+
 
 <body id="page-top" class="bg-gray-50 dark:bg-gray-800 scrollbar scrollbar-w-3 scrollbar-thumb-rounded-[0.25rem] scrollbar-track-slate-200 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-900 dark:scrollbar-thumb-gray-700">
     <!-- Navbar -->

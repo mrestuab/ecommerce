@@ -68,6 +68,9 @@ Route::get('/product-admin', function () {
 Route::get('/payment-admin', function () {
     return view('payment.index');
 });
+Route::get('/banner-admin', function () {
+    return view('admin.banner');
+});
 
 Route::get('logout', [AuthController::class, 'logout']);
 Route::get('logout-admin', [AuthController::class, 'logout_admin']);

@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-
-            $table->string('doc_no')->nullable();
-            $table->text('description')->nullable();
+            $table->string('id_order');
+            $table->string('status');
             $table->integer('amount')->default(0);
-            $table->string('payment_status')->nullable();
-            $table->text('payment_link')->nullable();
             $table->timestamps();
         });
     }

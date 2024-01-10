@@ -15,9 +15,15 @@
         </div>
         <div class="w-[70%] md:w-1/2 relative">
             <img class="w-full relative z-10" src="https://dlcdnwebimgs.asus.com/files/media/F437FDB6-360D-4B4F-A098-BC71FE9C59BC/v2/images/medium/2x/2__rog_mechanization_logo.webp" alt="">
-            <div class="h-full w-full absolute top-6 left-6">
             </div>
         </div>
     </div>
 </section>
+
+<section id="logo" class="py-16">
+    <div class="w-[70%] md:w-1/2 relative">
+        <img class="w-50 pl-48 relative z-10" src="img/logo.png" alt="">
+        </div>
+</section>
+
 @endsection

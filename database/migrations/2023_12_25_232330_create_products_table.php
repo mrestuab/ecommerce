@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kategori');
-            $table->string('nama_barang');
-            $table->string('gambar');
-            $table->text('deskripsi');
-            $table->integer('harga');
-            $table->integer('diskon');
+            $table->integer('id_category');
+            $table->string('product_name');
+            $table->string('image');
+            $table->text('description');
+            $table->integer('price');
+            $table->integer('discount');
             $table->string('tags');
             $table->string('sku');
-            $table->string('warna');
-            $table->integer('stok');
+            $table->string('color');
+            $table->integer('stock');
             $table->timestamps();
         });
     }
