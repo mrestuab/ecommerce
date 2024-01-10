@@ -42,6 +42,13 @@ Route::get('/product/{id}', function () {
 Route::get('/tentang-kami', function () {
     return view('tentang-kami');
 });
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+Route::get('/order', function () {
+    return view('order');
+});
 
 
 
@@ -57,6 +64,9 @@ Route::get('/category-admin', function () {
 });
 Route::get('/product-admin', function () {
     return view('produk.index');
+});
+Route::get('/payment-admin', function () {
+    return view('payment.index');
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

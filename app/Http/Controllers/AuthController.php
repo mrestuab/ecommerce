@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -67,39 +65,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login_member(Request $request){
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        if ($validator->fails()){
-            return response()->json(
-                $validator->errors(),
-                422
-            );
-        }
-
-        $member = Member::where('email', $request->email)->first();
-        if ($member){
-            if (Hash::check($request->password, $member->password)){
-                $request->session()->regenerate();
-                return response()->json([
-                    'message' => 'success',
-                    'data' => $member
-                ]);
-            }else{
-                return response()->json([
-                    'message' => 'failed',
-                    'data' => 'incorrect password'
-                ]);
-            }
-        }
-    }
-
     public function logout(){
         Session::flush();
-        return redirect('/login');
+        return redirect()->to('/');
     }
 
     public function logout_admin(){

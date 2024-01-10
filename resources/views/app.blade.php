@@ -42,7 +42,6 @@
     <script src="/js/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <script src="/js/app.js"></script>
-
     <script>
         function getCookie(name) {
             var nameEQ = name + "=";

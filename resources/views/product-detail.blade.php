@@ -14,7 +14,7 @@
                 </div>
                 <div class="flex md:flex-row flex-col gap-2 mb-4">
                     <div class="w-full md:w-1/2 px-2">
-                        <button class="w-full bg-gray-900 text-white py-2 px-4 font-bold hover:bg-gray-800">Masukan Keranjang</button>
+                        <button id="btn-add-to-cart" class="w-full bg-gray-900 text-white py-2 px-4 font-bold hover:bg-gray-800">Masukan Keranjang</button>
                     </div>
                     <div class="w-full md:w-1/2 px-2">
                         <button class="w-full bg-emerald-600 text-white py-2 px-4 font-bold hover:bg-emerald-700">Beli Sekarang</button>
@@ -67,5 +67,35 @@
         </div>
     </div>
 </div>
-
 @endsection
+
+@push('js')
+<script type="module">
+
+    $(function() {
+        $(document).on('click', '#btn-add-to-cart', function() {
+            const id = $(this).data('id')
+            const token = localStorage.getItem('token')
+
+            const confirm_dialog = confirm('Yakin menghapus data ini?');
+
+            if (confirm_dialog) {
+                $.ajax({
+                    url: '/api/categories/' + id,
+                    type: "DELETE",
+                    headers: {
+                        "Authorization": token
+                    },
+
+                    success: function(data) {
+                        if (data.success) {
+                            alert('Data berhasil dihapus')
+                            location.reload()
+                        }
+                    }
+                });
+            }
+        })
+    });
+</script>
+@endpush
