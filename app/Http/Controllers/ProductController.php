@@ -46,7 +46,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = validator::make($request->all(), [
-            'id_kategori' => 'required',
+            'id_kategori' => '',
             'nama_barang' => 'required',
             'gambar' => 'required|image|mimes:jpg,png,jpeg,webp',
             'deskripsi' => 'required',
@@ -77,6 +77,7 @@ class ProductController extends Controller
         $product = Product::create($input);
 
         return response()->json([
+            'success' => true,
             'data' => $product
         ]);
     }
@@ -115,7 +116,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validator = validator::make($request->all(), [
-            'id_kategori' => 'required',
+            'id_kategori' => '',
             'nama_barang' => 'required',
             'gambar' => 'required|image|mimes:jpg,png,jpeg,webp',
             'deskripsi' => 'required',
@@ -150,7 +151,7 @@ class ProductController extends Controller
         $product->update($input);
 
         return response()->json([
-            'message' => 'succes',
+            'message' => 'success',
             'data' => $product
         ]);
     }
@@ -168,7 +169,7 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json([
-            'message' => 'succes'
+            'message' => 'success'
         ]);
     }
 }

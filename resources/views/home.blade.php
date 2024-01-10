@@ -2,7 +2,7 @@
 @extends('components.navbar.index')
 @extends('components.footer.index')
 
-@section('title', 'REAG | Home')
+@section('title', 'REAG | Toko')
 
 @section('content')
 <div id="default-carousel" class="relative w-full" data-carousel="slide">

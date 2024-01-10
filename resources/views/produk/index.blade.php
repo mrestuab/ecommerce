@@ -78,6 +78,16 @@
                                 <label for="nama_barang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
                                 <input type="text" id="nama_barang" name="nama_barang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             </div>
+
+                            <label for="id_kategori" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                            <select id="id_kategori" name="id_kategori" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Choose a country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="FR">France</option>
+                                <option value="DE">Germany</option>
+                            </select>
+
                             <div class="mb-5">
                                 <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
                                 <textarea required id="deskripsi" name="deskripsi" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
@@ -126,7 +136,6 @@
 
 @push('js')
 <script type="module">
-
     $(function() {
         $.ajax({
             url: '/api/produtcs',
@@ -142,6 +151,11 @@
                         <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${val.nama_barang}</th>
                         <th>${val.deskripsi}</th>
                         <th><img src="/uploads/${val.gambar}" width="150"></th>
+                        <th class="px-6 py-4">${val.harga}</th>
+                        <th class="px-6 py-4">${val.diskon}</th>
+                        <th class="px-6 py-4">${val.tags}</th>
+                        <th class="px-6 py-4">${val.warna}</th>
+                        <th class="px-6 py-4">${val.stok}</th>
                         <th>
                             <button data-modal-target="default-modal" data-modal-show="default-modal" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline modal-ubah">Ubah</button>
                             <a href="#" data-id="${val.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn-hapus">Hapus</a>
@@ -151,6 +165,20 @@
                 });
 
                 $('tbody').append(row)
+            }
+        })
+
+        $.ajax({
+            url: '/api/categories',
+            success: function({
+                data
+            }) {
+                $.each(data, function(i, item) {
+                    $('#id_kategori').append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+                });
             }
         })
 
@@ -201,6 +229,7 @@
                 const $form = $(this)
                 const token = localStorage.getItem('token')
                 const frmdata = new FormData(this);
+                frmdata.append('id_kategori', '1234')
                 $.ajax({
                     url: 'api/produtcs',
                     type: 'POST',

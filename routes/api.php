@@ -30,6 +30,7 @@ Route::group([
     Route::post('login-admin', [AuthController::class, 'login'])-> name('login');
     Route::post('register', [AuthController::class, 'register'])-> name('register');
     Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('logout-admin', [AuthController::class, 'logout']);
 });
 
 Route::group([
@@ -37,11 +38,8 @@ Route::group([
 ], function(){
     Route::resources([
        'categories' => CategoryController::class,
-       'subcategories' => SubcategoryController::class,
        'sliders' => SliderController::class,
        'produtcs' => ProductController::class,
-       'members' => MemberController::class,
-       'testimonis' => TestimoniController::class,
        'reviews' => ReviewController::class,
        'orders' => OrderController::class
     ]);
@@ -55,8 +53,6 @@ Route::group([
 
     Route::get('reports', [ReportController::class, 'index']);
 
-    Route::post('login-member', [AuthController::class, 'login_member']);
-    Route::post('logout-member', [AuthController::class, 'logout_member']);
     Route::post('login', [AuthController::class, 'login']);
 });
 
