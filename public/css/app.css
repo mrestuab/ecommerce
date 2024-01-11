@@ -1428,9 +1428,6 @@ input:checked + .toggle-bg{
 .left-1\/2{
   left: 50%;
 }
-.left-6{
-  left: 1.5rem;
-}
 .right-0{
   right: 0px;
 }
@@ -1445,9 +1442,6 @@ input:checked + .toggle-bg{
 }
 .top-1\/2{
   top: 50%;
-}
-.top-6{
-  top: 1.5rem;
 }
 .top-\[15\%\]{
   top: 15%;
@@ -2144,6 +2138,9 @@ input:checked + .toggle-bg{
 .pl-11{
   padding-left: 2.75rem;
 }
+.pl-48{
+  padding-left: 12rem;
+}
 .pt-16{
   padding-top: 4rem;
 }
@@ -2155,9 +2152,6 @@ input:checked + .toggle-bg{
 }
 .pt-8{
   padding-top: 2rem;
-}
-.pl-48{
-  padding-left: 12rem;
 }
 .text-left{
   text-align: left;

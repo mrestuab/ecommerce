@@ -10,7 +10,7 @@
         <div class="flex flex-col md:flex-row -mx-4">
             <div class="md:flex-1 px-4">
                 <div class="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
-                    <img class="w-full h-full object-cover" src="/img/l1.jpg" alt="Product Image">
+                    <img class="w-full h-full object-cover" src="/uploads/{{$product['image']}}" alt="Product Image">
                 </div>
                 <div class="flex md:flex-row flex-col gap-2 mb-4">
                     <div class="w-full md:w-1/2 px-2">
@@ -22,17 +22,18 @@
                 </div>
             </div>
             <div class="md:flex-1 px-4">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">ASUS ROG STRIX G15 G513RM RYZEN 9-6900HX RTX3060 16G 1TB 300Hz W11 OHS - 15.6" FHD</h2>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">{{$product['name']}}</h2>
                 <div class="flex mb-4">
                     <div class="mr-4">
                         <span class="font-bold text-gray-700 dark:text-gray-300">Price:</span>
-                        <span class="text-gray-600 dark:text-gray-300">$29.99</span>
+                        <span class="text-gray-600 dark:text-gray-300">Rp {{$product['price']}}</span>
                     </div>
                 </div>
                 <div>
                     <span class="font-bold text-gray-700 dark:text-gray-300">Deskripsi:</span>
                     <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
-                    <div class="border-t-2 justify-center">
+                    {{$product['description']}}
+                    <!-- <div class="border-t-2 justify-center">
                         <p class="text-lg font-bold">Sistem Operasi</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit quo perferendis illum voluptate alias minus, nesciunt veritatis commodi voluptatibus expedita asperiores error saepe iusto ut? Nulla magnam provident natus et.</p>
                     </div>
@@ -60,7 +61,7 @@
                     <div class="border-t-2 justify-center">
                         <p class="text-lg font-bold">Penyimpanan</p>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ex tempora voluptate aliquid ducimus voluptates ab ad dolor fugiat nemo, in deserunt blanditiis facilis quia nostrum id accusantium? Doloribus, in?</p>
-                    </div>
+                    </div> -->
                     </p>
                 </div>
             </div>
@@ -71,31 +72,8 @@
 
 @push('js')
 <script type="module">
-
     $(function() {
-        $(document).on('click', '#btn-add-to-cart', function() {
-            const id = $(this).data('id')
-            const token = localStorage.getItem('token')
 
-            const confirm_dialog = confirm('Yakin menghapus data ini?');
-
-            if (confirm_dialog) {
-                $.ajax({
-                    url: '/api/categories/' + id,
-                    type: "DELETE",
-                    headers: {
-                        "Authorization": token
-                    },
-
-                    success: function(data) {
-                        if (data.success) {
-                            alert('Data berhasil dihapus')
-                            location.reload()
-                        }
-                    }
-                });
-            }
-        })
     });
 </script>
 @endpush

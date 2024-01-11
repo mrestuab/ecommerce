@@ -29,16 +29,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -47,7 +37,12 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validator = validator::make($request->all(), [
-            'id_number' => 'required',
+            'recipient_name'=> 'required',
+            'recipient_phone' => 'required',
+            'recipient_email' => 'required',
+            'address' => 'required',
+            'province' => 'required',
+            'subdistrict' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -59,18 +54,32 @@ class OrderController extends Controller
 
         $input = $request->all();
 
-        $order = Order::create($input);
+        $inputOrderMaster = [
+            'status' => 'unpaid'
+        ];
 
-        for($i = 0; $i < count($input['id_produk']); $i++) {
+        $order = Order::create($inputOrderMaster);
+
+        for($i = 0; $i < count($input['id_product']); $i++) {
             OrderDetail::create([
                 'id_order' => $order['id'],
-                'id_produk' => $input['id_produk']['$i'],
+                'id_product' => $input['id_product'][$i],
+                'recipient_name'=> $input['recipient_name'][$i],
+                'recipient_phone'=> $input['recipient_email'][$i],
+                'recipient_email'=> $input['recipient_email'][$i],
+                'address'=> $input['address'][$i],
+                'province'=> $input['province'][$i],
+                'subdistrict'=> $input['subdistrict'][$i],
+                'province'=> $input['province'][$i],
+                'address' => 'required',
+                'province' => 'required',
+                'subdistrict' => 'required',
                 'jumlah' => $input['jumlah']['$i'],
                 'color' => $input['color']['$i'],
                 'total' => $input['total']['$i'],
             ]);
         }
-        
+
         return response()->json([
             'data' => $order
         ]);
@@ -122,15 +131,15 @@ class OrderController extends Controller
         }
 
         $input = $request->all();
-        
+
         $order->update($input);
 
         OrderDetail::where('id_order', $order['id'])->delete();
 
-        for($i = 0; $i < count($input['id_produk']); $i++) {
+        for($i = 0; $i < count($input['id_product']); $i++) {
             OrderDetail::create([
                 'id_order' => $order['id'],
-                'id_produk' => $input['id_produk']['$i'],
+                'id_product' => $input['id_product']['$i'],
                 'jumlah' => $input['jumlah']['$i'],
                 'color' => $input['color']['$i'],
                 'total' => $input['total']['$i'],
@@ -207,7 +216,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Order $order)
-    {        
+    {
         $order->delete();
 
         return response()->json([

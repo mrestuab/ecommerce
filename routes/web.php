@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -36,9 +37,11 @@ Route::get('/cart', function () {
 Route::get('/products', function () {
     return view('products');
 });
-Route::get('/product/{id}', function () {
-    return view('product-detail');
-});
+Route::get('/product/{id}', [ProductController::class, 'detail']);
+
+// Route::get('/product/{id}', function () {
+//     return view('product-detail');
+// });
 Route::get('/tentang-kami', function () {
     return view('tentang-kami');
 });
@@ -63,7 +66,7 @@ Route::get('/category-admin', function () {
     return view('admin.category');
 });
 Route::get('/product-admin', function () {
-    return view('produk.index');
+    return view('admin.product');
 });
 Route::get('/payment-admin', function () {
     return view('payment.index');

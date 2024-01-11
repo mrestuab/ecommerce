@@ -9,13 +9,11 @@
     <!-- Carousel wrapper -->
     <div class="relative h-36 overflow-hidden md:h-96">
          <!-- Item 1 -->
+        @foreach ($data['banner'] as $banner)
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://dlcdnwebimgs.asus.com/gain/A0C0D3F8-7DD0-40A5-B5B0-CFA6BE66F647/fwebp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src="/uploads/{{$banner['image']}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
-        <!-- Item 2 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://dlcdnwebimgs.asus.com/gain/90994445-7C65-4945-943E-A5717A1C1717/fwebp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
+        @endforeach
     </div>
     <!-- Slider indicators -->
     <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
@@ -42,13 +40,13 @@
 </div>
 <div class="py-10 md:py-20 sm:py-32 sm:overflow-x-auto sm:flex">
         <div class="flex flex-col md:flex-row justify-center items-center md:flex-none min-w-full sm:px-6 lg:px-8 gap-y-16 gap-x-10">
-        @foreach ($categories as $category)
+        @foreach ($data['categories'] as $category)
             <a id="" href="<?php echo url('products') ?>" class="p-4 md:p-0 flex-none w-[23.625rem] max-w-full">
                 <div class="relative bg-slate-200 ring-1 ring-slate-900/5 overflow-hidden shadow-md shadow-slate-700/5">
-                    <img alt="{{$category['nama_kategori']}}" loading="lazy" width="750" height="1624"
+                    <img alt="{{$category['name']}}" loading="lazy" width="750" height="1624"
                         decoding="async" data-nimg="1" class=""
-                        style="color:transparent" src="/uploads/{{$category['gambar']}}">
-                        <span class="drop-shadow-md absolute text-center text-3xl w-full top-[15%] text-white">{{$category['nama_kategori']}}</span>
+                        style="color:transparent" src="/uploads/{{$category['image']}}">
+                        <span class="drop-shadow-md absolute text-center text-3xl w-full top-[15%] text-white">{{$category['name']}}</span>
                 </div>
             </a>
         @endforeach

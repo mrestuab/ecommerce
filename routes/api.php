@@ -40,7 +40,7 @@ Route::group([
     Route::resources([
        'categories' => CategoryController::class,
        'sliders' => SliderController::class,
-       'produtcs' => ProductController::class,
+       'products' => ProductController::class,
        'reviews' => ReviewController::class,
        'orders' => OrderController::class,
        'banner' => BannerController::class,
