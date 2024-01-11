@@ -14,10 +14,10 @@
                 </div>
                 <div class="flex md:flex-row flex-col gap-2 mb-4">
                     <div class="w-full md:w-1/2 px-2">
-                        <button id="btn-add-to-cart" class="w-full bg-gray-900 text-white py-2 px-4 font-bold hover:bg-gray-800">Masukan Keranjang</button>
+                        <a id="btn-add-to-cart" class="w-full bg-gray-900 text-white py-2 px-4 font-bold hover:bg-gray-800">Masukan Keranjang</a>
                     </div>
                     <div class="w-full md:w-1/2 px-2">
-                        <button class="w-full bg-emerald-600 text-white py-2 px-4 font-bold hover:bg-emerald-700">Beli Sekarang</button>
+                        <a href="/payment" class="w-full bg-emerald-600 text-white py-2 px-4 font-bold hover:bg-emerald-700">Beli Sekarang</a>
                     </div>
                 </div>
             </div>
